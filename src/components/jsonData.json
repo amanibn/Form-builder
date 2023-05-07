@@ -1,0 +1,29 @@
+{
+    "formFields": [
+      {
+        "id": 1,
+        "className": "form-control",
+        "label": "First Name",
+        "type": "text"
+      },
+      {
+        "id": 2,
+        "className": "form-control",
+        "label": "Last Name",
+        "type": "text"
+      },
+      {
+        "id": 3,
+        "className": "form-control",
+        "label": "Email",
+        "type": "email"
+      },
+      {
+        "id": 4,
+        "className": "form-control",
+        "label": "Message",
+        "type": "textarea"
+      }
+    ]
+  }
+  

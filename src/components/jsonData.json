@@ -1,29 +1,31 @@
 {
-    "formFields": [
-      {
-        "id": 1,
-        "className": "form-control",
-        "label": "First Name",
-        "type": "text"
-      },
-      {
-        "id": 2,
-        "className": "form-control",
-        "label": "Last Name",
-        "type": "text"
-      },
-      {
-        "id": 3,
-        "className": "form-control",
-        "label": "Email",
-        "type": "email"
-      },
-      {
-        "id": 4,
-        "className": "form-control",
-        "label": "Message",
-        "type": "textarea"
-      }
-    ]
-  }
-  
+  "fields": [
+    {
+       "id":165895647,
+      "type": "text",
+      "label": "Name",
+      "name": "name",
+      "className":"form-control",
+      "placeholder": "Enter your name",
+      "required": true
+    },
+    {
+      "id": 278596214,
+      "type": "email",
+      "label": "Email",
+      "name": "email",
+      "className": "form-control",
+      "placeholder": "Enter your email",
+      "required": true
+    },
+    {
+      "id": 375896325,
+      "type": "textarea",
+      "label": "Message",
+      "name": "message",
+      "className": "form-control",
+      "placeholder": "Enter your message",
+      "required": false
+    }
+  ]
+}

@@ -4,3 +4,64 @@
 pre{
   white-space: pre-wrap;
 }
+label{
+    float: left;
+    display: inline-block;
+}
+.add-field{
+  color: #fff !important;
+  background-color: #282634 !important;
+  padding: 8px 32px !important;
+  border-radius: 2rem !important;
+}
+.cancel-edit{
+  color: #fff !important;
+  background-color: #664006 !important;
+  padding: 8px 32px !important;
+  border-radius: 2rem !important;
+}
+.btn-group button{
+      margin-right: 3px;
+  font-size: 16px;
+  font-weight:400;
+  display:inline-block;
+  border-radius: .25em;
+  text-shadow: -1px -1px 0px rgba(0,0,0,0.4);
+  transition:ease-in-out .2s;
+  line-height:40px;
+   width:40px !important; 
+  text-align: center;
+}
+.btn-edit-elt,
+.btn-remove-elt {
+  color: #fff;
+}
+.edit {
+  background: rgb(52, 152, 219);
+  }
+  .delete {
+    background: #c0392b;
+}
+  .btn-edit-elt.edit:before, .touch.save:before, .touch.new:before, .touch.cancel:before, .touch.delete:before {
+    width: 100%;
+    text-align: center;
+    font-size: 1.25rem;
+}
+button svg{
+  vertical-align: unset;
+}
+.copy-text,
+.export-json{
+      display: inline-block;
+    outline: 0px;
+    border: 0px;
+    cursor: pointer;
+    background-color: rgb(66, 153, 225);
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    line-height: 26px;
+}
+

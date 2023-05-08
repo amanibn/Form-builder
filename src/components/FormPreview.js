@@ -6,7 +6,7 @@ function FormPreview(props) {
         <div className='form-group mb-2' key={field.id}>
             <label>{field.label}</label>
             <div className="input-group mb-3">
-                <input className={field.className} type={field.type} />
+                <input name={field.name} className={field.className} type={field.type} />
                 <div className='input-group-append'>
                     <div className="btn-group" role="group" aria-label="Basic example">
                         <button className='btn-mouve-up' onClick={(e) => handleMoveUp(index, e)} disabled={index === 0}><FaLevelUpAlt /></button>

@@ -7,7 +7,7 @@
       "name": "name",
       "className":"form-control",
       "placeholder": "Enter your name",
-      "required": true
+      "isRequired": true
     },
     {
       "id": 278596214,
@@ -16,7 +16,7 @@
       "name": "email",
       "className": "form-control",
       "placeholder": "Enter your email",
-      "required": true
+      "isRequired": true
     },
     {
       "id": 375896325,
@@ -25,7 +25,7 @@
       "name": "message",
       "className": "form-control",
       "placeholder": "Enter your message",
-      "required": false
+      "isRequired": false
     }
   ]
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import jsonData from './jsonData.json';
 import { saveAs } from 'file-saver';
+// Import my components here
 import FormPreview from './FormPreview';
 import FormHtml from './FormHtml';
 
@@ -8,6 +9,8 @@ function CreateForm() {
     var [formFields, setFormFields] = useState(jsonData.fields);
     const [label, setLabel] = useState('');
     const [type, setType] = useState('');
+    const [name, setName] = useState('');
+    const [isRequired, setIsRequired] = useState(false);
     const [className, setClassName] = useState('');
     const [editIndex, setEditIndex] = useState(null);
     function exportAsJson(data) {
@@ -19,10 +22,13 @@ function CreateForm() {
         e.preventDefault();
         const newField = {
             id: Date.now().toString(),
-            label: e.target.label.value,
-            type: e.target.type.value,
-            className: e.target.className.value,
+            label: label,
+            type: type,
+            name: name,
+            className: className,
+            isRequired: isRequired == "required"? true : false,
         };
+        console.log(newField);
         if (editIndex !== null) {
             const updatedFields = [...formFields];
             updatedFields[editIndex] = newField;
@@ -34,36 +40,47 @@ function CreateForm() {
         }
         setLabel('')
         setType('')
+        setName('')
         setClassName('')
+        setIsRequired(false)
     };
+
+
     const generateFormHTML = () => {
         let html = '';
-        //console.log(formFields);
         formFields.forEach((field) => {
-            // //console.log(field);
-            html += `<div className="form-group"><label>${field.label} </label> <input className="${field.className}" type="${field.type}" /></div><br />`;
+            html += `<div className="form-group"><label>${field.label} </label> <input ${field.isRequired ? "required" : ""}  name="${field.name}" className="${field.className}" type="${field.type}" /></div>`;
         });
-
         return html;
     };
+
+
     const handleRemoveField = (fieldId) => {
         const updatedFields = formFields.filter((field) => field.id !== fieldId);
         setFormFields(updatedFields);
-    };
+    }
+
+
     const handleEditField = (index, id, e) => {
         e.preventDefault();
         const fieldToEdit = formFields[index];
         if (fieldToEdit.id == id) {
             setLabel(fieldToEdit.label);
             setType(fieldToEdit.type);
+            setName(fieldToEdit.name);
             setClassName(fieldToEdit.className);
+            setIsRequired(fieldToEdit.isRequired)
             setEditIndex(index);
         }
     };
+
+
     const handleCancelEdit = () => {
         setLabel('');
         setType('');
+        setName('');
         setClassName('');
+        setIsRequired(false)
         setEditIndex(null);
     };
     /**************************************************** */
@@ -99,11 +116,11 @@ function CreateForm() {
         document.body.removeChild(dummyElement);
         alert("Text copied to clipboard!");
     }
+
+
     return (
         <div className='container'>
             <h1>Form Builder</h1>
-
-            {/* Form to capture field properties */}
             <form onSubmit={handleFormSubmit}>
                 <div className='row'>
                     <div className='col-6 mx-auto'>
@@ -111,28 +128,56 @@ function CreateForm() {
                             <label>
                                 Field Label:
                             </label>
-                            <input className='form-control' type="text" name="label" value={label} onChange={(e) => setLabel(e.target.value)} />
+                            <input required className='form-control' type="text" name="label" value={label} onChange={(e) => setLabel(e.target.value)} />
+
+                        </div>
+                        <div className="form-group">
+                            <label>
+                                Name:
+                            </label>
+                            <input required className='form-control' type="text" name="label" value={name} onChange={(e) => setName(e.target.value)} />
 
                         </div>
                         <div className="form-group">
                             <label>
                                 Field Type:
                             </label>
-                            <select className='form-control' name="type" value={type} onChange={(e) => setType(e.target.value)}>
+                            <select required className='form-control' name="type" value={type} onChange={(e) => setType(e.target.value)}>
+                                <option value="">Select type</option>
                                 <option value="text">Text</option>
                                 <option value="number">Number</option>
                                 <option value="checkbox">Checkbox</option>
                                 <option value="select">Select</option>
-                                {/* Add other field types as needed */}
+                                <option value="button">Button</option>
+                                <option value="submit">Submit</option>
+                                <option value="color">Color</option>
+                                <option value="email">Email</option>
+                                <option value="file">File</option>
+                                <option value="search">Search</option>
+                                <option value="month">Month</option>
+                                <option value="password">Password</option>
+                                <option value="radio">Radio</option>
+                                <option value="date">Date</option>
+                                <option value="url">Url</option>
+                                <option value="week">Week</option>
+                                <option value="datetime-local">Datetime-local</option>
                             </select>
-
+                        </div>
+                        <div className="form-group">
+                            <label>
+                                Field Type:
+                            </label>
+                            <select className='form-control' name="type" value={isRequired} onChange={(e) => setIsRequired(e.target.value)}>
+                                <option value="not-required">Not required</option>
+                                <option value="required">Required</option>
+                               
+                            </select>
                         </div>
                         <div className="form-group">
                             <label>
                                 Class
                             </label>
                             <input className='form-control' type="text" name="className" value={className} onChange={(e) => setClassName(e.target.value)} />
-
                         </div>
                         <div className="form-group">
                             <button className='btn btn-primary m-1 add-field' type="submit">{editIndex !== null ? 'Save Changes' : 'Add Field'}</button>
@@ -142,12 +187,9 @@ function CreateForm() {
                                 </button>
                             )}
                         </div>
-
                     </div>
                 </div>
             </form>
-
-            {/* Render the form based on formFields state */}
 
             <div className='row'>
                 <div className='col-md-6 col-sm-12 col-xs-12' >
